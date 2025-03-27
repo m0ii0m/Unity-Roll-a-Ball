@@ -45,6 +45,15 @@ public class PlayerController : MonoBehaviour
             count++;
             SetCountText();
         }
+
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            // Destroy the current object
+            Destroy(gameObject);
+            // Update the winText to display "You Lose!"
+            winTextObject.GetComponent<TextMeshProUGUI>().text = "You Lose!";
+            winTextObject.gameObject.SetActive(true);
+        }
     }
 
     void SetCountText()
@@ -54,6 +63,7 @@ public class PlayerController : MonoBehaviour
         if (count >= 14)
         {
             winTextObject.SetActive(true);
+            Destroy(GameObject.FindGameObjectWithTag("Enemy"));
         }
     }
 }
